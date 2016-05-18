@@ -127,9 +127,9 @@ access_mem (unw_addr_space_t as, unw_word_t addr, unw_word_t *val, int write,
             void *arg)
 {
   /* validate address */
-    const struct cursor *c = (const struct cursor *) arg;
-    if (c && validate_mem(addr))
-      return -1;
+  const struct cursor *c = (const struct cursor *) arg;
+  if (c && validate_mem(addr))
+    return -1;
 
   if (write)
     {

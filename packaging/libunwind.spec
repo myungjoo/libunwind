@@ -9,8 +9,7 @@ Summary:        Unwind Library
 License:        MIT
 Group:          System/Libraries
 Version:        1.1
-Release:        125
-VCS:            profile/base/libunwind#upstream/1.1-0-g0349587-dirty
+Release:        135
 Source:         libunwind-%{version}.tar.gz
 Source1001: 	libunwind.manifest
 ExclusiveArch:  %ix86 x86_64 %arm aarch64
@@ -30,7 +29,7 @@ A portable and efficient C programming interface (API) to determine the
 call-chain of a program.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}
 cp %{SOURCE1001} .
 
 %build
@@ -52,19 +51,18 @@ stat %{buildroot}/$(readlink -f "%{buildroot}/%{_libdir}/libunwind.so");
 %postun -p /sbin/ldconfig
 
 %files
-%manifest %{name}.manifest
+%manifest %{name}.manifest                                                                                          
 %license COPYING
 %defattr(-, root, root)
-%_libdir/lib*
 %{_libdir}/lib*.so.*
+%{_libdir}/libunwind-*.so
 %{_libdir}/libunwind.so
 
 %files devel
-%manifest %{name}.manifest
+%manifest %{name}.manifest                                                                                          
 %defattr(-, root, root)
 %{_prefix}/include/*
 %{_libdir}/lib*.a
-%{_libdir}/libunwind-*.so
 %{_libdir}/pkgconfig/libunwind-generic.pc
 %{_libdir}/pkgconfig/libunwind-ptrace.pc
 %{_libdir}/pkgconfig/libunwind-setjmp.pc
@@ -72,6 +70,6 @@ stat %{buildroot}/$(readlink -f "%{buildroot}/%{_libdir}/libunwind.so");
 %ifarch %arm %ix86 x86_64 aarch64
 %{_libdir}/pkgconfig/libunwind-coredump.pc
 %endif
-#doc %{_mandir}/man?/*
+%doc %{_mandir}/man?/*
 
 %changelog
