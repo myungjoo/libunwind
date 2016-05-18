@@ -9,7 +9,7 @@ Summary:        Unwind Library
 License:        MIT
 Group:          System/Libraries
 Version:        1.1
-Release:        135
+Release:        136
 Source:         libunwind-%{version}.tar.gz
 Source1001: 	libunwind.manifest
 ExclusiveArch:  %ix86 x86_64 %arm aarch64
@@ -29,7 +29,7 @@ A portable and efficient C programming interface (API) to determine the
 call-chain of a program.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 cp %{SOURCE1001} .
 
 %build
